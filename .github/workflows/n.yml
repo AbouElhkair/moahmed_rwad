@@ -42,4 +42,4 @@ jobs:
  
     - name: Create Tunnel
  
-      run: powershell -Command "Start-Sleep -s 7200; echo 'RDP session has ended'" ; .\ngrok\ngrok.exe tcp 3389
+      run: powershell -Command "Start-Sleep -s 7200; .\ngrok\ngrok.exe tcp 3389
