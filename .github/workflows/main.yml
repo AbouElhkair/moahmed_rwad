@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Downloading Essentials
         run: |
-          Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile Downloads.bat
+          Invoke-WebRequest https://raw.githubusercontent.com/chamod12/RDP-Downloads/main/Downloads.bat -OutFile Downloads.bat
           cmd /c Downloads.bat
 
       - name: Connecting Ngrok Account
