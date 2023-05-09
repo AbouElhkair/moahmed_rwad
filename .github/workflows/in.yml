@@ -1,0 +1,37 @@
+name: Disala RDP - Ngrok 001
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 2880
+
+    env:
+      NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN_001 }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Download Ngrok
+        run: |
+          Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
+          Expand-Archive ngrok.zip -DestinationPath .
+
+      - name: Configure Ngrok
+        run: ngrok config add-authtoken $NGROK_AUTH_TOKEN
+
+      - name: Enable RDP Access
+        run: Enable-RemoteDesktop.ps1
+
+      - name: Upload Software
+        run: Upload-Software.ps1
+
+      - name: Log in to Remote Desktop
+        run: Start-RemoteDesktop.ps1
+
+      - name: Time Count
+        run: Time-Count.ps1
+
